@@ -64,24 +64,40 @@ public class App
                     break;
                 case 3:
                     System.out.println("These are all the tasks: ");
-                    getAllTasks(user);
-                    pressEnterToContinue();
-                    break;
-                case 4:
-                    System.out.println("These are the completed tasks: ");
-                    List<Task> completedTasks = user.getCompletedTasks();
-                    for (Task task : completedTasks) {
-                        System.out.println(completedTasks.indexOf(task) + ". ");
-                        printTask(task, false);
+                    if (getAllTasks(user).size() <= 0) {
+                        System.out.println("No tasks found");
                     }
                     pressEnterToContinue();
                     break;
+                case 4:
+
+                    List<Task> completedTasks = user.getCompletedTasks();
+                    if (completedTasks.size() > 0) {
+                        System.out.println("These are the completed tasks: ");
+                        for (Task task : completedTasks) {
+                            System.out.println(completedTasks.indexOf(task) + ". ");
+                            printTask(task, false);
+                        }
+                    }
+                    else {
+                        System.out.println("There are no completed tasks!");
+                    }
+
+                    pressEnterToContinue();
+                    break;
                 case 5:
-                    System.out.println("These are the uncompleted tasks: ");
+
+
                     List<Task> uncompletedTasks = user.getUncompletedTasks();
-                    for (Task task : uncompletedTasks) {
-                        System.out.println(uncompletedTasks.indexOf(task) + ". ");
-                        printTask(task, false);
+                    if (uncompletedTasks.size() > 0) {
+                        System.out.println("These are the uncompleted tasks: ");
+                        for (Task task : uncompletedTasks) {
+                            System.out.println(uncompletedTasks.indexOf(task) + ". ");
+                            printTask(task, false);
+                        }
+                    }
+                    else {
+                        System.out.println("There are no uncompleted tasks!");
                     }
                     pressEnterToContinue();
                     break;
@@ -144,6 +160,9 @@ public class App
                             System.out.println("Return to main menu...");
                             pressEnterToContinue();
                             break;
+                        default:
+                            System.out.println("Invalid option, try again");
+                            break;
                     }
 
                     break;
@@ -153,7 +172,9 @@ public class App
 
                     break;
 
-
+                default:
+                    System.out.println("Invalid option, try again");
+                    break;
 
             }
 
